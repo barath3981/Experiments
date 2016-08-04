@@ -1,0 +1,22 @@
+* {
+  margin: 0px;
+  padding: 0px;
+}
+body {
+  background: #fff;
+  font-family: Arial;
+  font-size: 14px;
+}
+/* our header */
+header {
+  background: #3a5795;
+  color: #fff;
+  padding: 5px;
+}
+header h2 {
+  font-size: 28px;
+}
+header .top {
+  width: 850px;
+  margin: 0px auto;
+}

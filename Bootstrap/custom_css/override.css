@@ -1,0 +1,40 @@
+.nav-icons a i {
+		color: #337ab7;
+    text-decoration: none;
+		cursor: pointer;
+}
+
+.dropdown-messages {
+	width: 330px;
+}
+.dropdown-message-wrap {
+	width: 330px !important;
+}
+.navbar-top-links {
+	display: inline-flex;
+}
+
+.cus-side-searclh {
+	border-radius: 0px;
+	margin-top: -21px;
+	width: 100%;
+	padding: 15px;
+}
+.cus-side-navbar {
+	z-index: 1;
+	position: absolute;
+	width: 250px;
+	margin-top: 65px;
+}
+
+.cus-left-nav {
+	background: #000;
+    width: 250px;
+    height: 60px;
+    position: absolute;
+    margin-top: 50px;
+}
+
+.cus-left-nav-content {
+	
+}

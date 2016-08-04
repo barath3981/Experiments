@@ -1,0 +1,17 @@
+.form-signin {
+  max-width: 330px;
+  margin: 0 auto;
+  padding: 15px;
+}
+
+.form-signin input[type="email"] {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+  margin-bottom: -1px;
+}
+
+.form-signin input[type="password"] {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+  margin-top: -1px;
+}

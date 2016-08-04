@@ -1,0 +1,34 @@
+body {
+  background: #8DC26F;
+}
+
+.login-page {
+  width: 350px;
+  padding: 8%;
+  margin: auto;
+}
+
+.login-form {
+  background: #FFFFFF;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 21px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+form input {
+  width: 100%;
+  margin: 0 0 15px;
+  padding: 15px;
+  background: #f2f2f2;
+  border: 0;
+  box-sizing: border-box;
+}
+
+form button {
+  background: #4CAF50;
+  width: 100%;
+  padding: 15px;
+  border: 0;
+  color: #FFFFFF;
+  cursor: pointer;
+}

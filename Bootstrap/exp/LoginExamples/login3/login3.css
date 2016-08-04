@@ -1,0 +1,60 @@
+body {
+  background: #e9e9e9;
+}
+
+.login-page {
+  max-width: 350px;
+  width: 100%;
+  margin: auto;
+  padding: 10%;
+  position: relative;
+}
+
+.login-form {
+  background: #ffffff;
+  padding: 45px;
+  text-align: left;
+  border-top: 5px solid #33b5e5;
+}
+
+input {
+  padding: 10px 15px;
+  width: 100%;
+  margin: 0 0 20px;
+  border: 1px solid #d9d9d9;
+  display: block;
+  outline: none;
+  box-sizing: border-box;
+}
+
+button {
+  cursor: pointer;
+  width: 100%;
+  margin: 0 0 20px;
+  padding: 10px;
+  background: #33b5e5;
+  border: none;
+  color: #ffffff;
+}
+
+h2 {
+
+}
+
+.login-page .footer-section {
+  background: #f2f2f2;
+  text-align: center;
+  padding: 5px;
+  box-sizing: border-box;
+}
+
+.login-page .toggle {
+  position: absolute;
+  display: inline-block;
+  top: 160px;
+  right: 156px;
+  background: #33b5e5;
+  padding: 2px;
+  color: #ffffff;
+  cursor: pointer;
+}
