@@ -1,3 +1,3 @@
 $(document).ready(function() {
-  alert('Coll');
+  $( ".inner" ).after( $('h2') );
 });

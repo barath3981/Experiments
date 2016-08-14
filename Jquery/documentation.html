@@ -1,0 +1,280 @@
+Jquery traversing methods
+
+1 add( selector )
+      The add() method adds elements to an existing group of elements, example below
+      <script type="text/javascript">
+        $("h1").add("p span").add("span").add('div').css("background-color", "yellow");
+      </script>
+      In the above example we are adding <p><span></span></p> tags to <h1></h1>
+      it is equals to
+      <script type="text/javascript">
+        $("h1, p span")
+      </script>
+      and then adding <span></span> to above combination and aging adding <div></div> to result comibination.
+      so above example equals to
+      <script type="text/javascript">
+        $("h1, p span, span, div").css("background-color", "yellow");
+      </script>
+
+
+2 addBack()
+      1.  jQuery addBack function adds the element found in the previous search to the jQuery object group.
+          You can find elements under a parent element and add the parent element also the list of elements.
+      2.  jQuery <code>.addBack()</code> method adds previous DOM element to the current set and maintains them in the internal stack
+          which will take care of changes to the matched set of elements.
+          <script type="text/javascript">
+            var elements = $('selector-one').find('selector-two');
+          </script>
+      In the above example, first Jquery will find for the first selector and next it will find for selector-two, inside selector-one
+      and Jquery will add the selector-two DOM into Jquery object group.
+      If we add the <code>.addBack()</code> method to the above example.
+          <script type="text/javascript">
+            var elements = $('selector-one').find('selector-two').addBack();
+          </script>
+      Then it will add the selector-one DOM into jquery object group.
+
+
+3	addClass( )
+      It simply used to add class to particluar selector.
+      <script type="text/javascript">
+        $('selector').addClass('border');
+      </script>
+      In the above example Jquery will add .border class to the selector DOM.
+
+4 after()
+      Insert content, specified by the parameter, after each element in the set of matched elements.
+      <div class="container">
+        <h2>Greetings</h2>
+        <div class="inner">Hello</div>
+        <div class="inner">Goodbye</div>
+      </div>
+      <script type="text/javascript">
+        $( ".inner" ).after( "<p>Test</p>" );
+      </script>
+      Here in the above example jquery will add <code><p>Test</p></code> tag after every inner selector.
+      But when we pass existing selector to <code>after()</code> method as a parameter, it move. like below example.
+      <script type="text/javascript">
+        $( ".inner" ).after( $(h2) );
+      </script>
+      PENDING...
+
+5 ajaxComplete()
+      The <code>ajaxComplete()</code> method specifies a function to be run whn AJAX request complete.
+      Whenever an Ajax request completes, jQuery triggers the <code>ajaxComplete()</code> method.
+      <script type="text/javascript">
+      $( document ).ajaxComplete(function() {
+        $( ".log" ).text( "Triggered ajaxComplete handler." );
+      });
+      $( "button" ).click(function() {
+        $( ".result" ).load( "ajax/test.html" );
+      });
+      </script>
+      In the above example when user clicks the button AJAX request will be sent and after AJAX request complete
+      the <code>ajaxComplete()</code> method will be fired.
+      In one web page there might be a chance more than one ajax requst so at that time the <code>ajaxComplete()</code>
+      will fire for any AJAX request, So differentiate which AJAX request, use the parameters passed to the method.
+      Each time an <code>ajaxComplete()</code> method  is executed, it is passed the event object, the <code>XMLHttpRequest</code>
+      object, and the settings object that was used in the creation of the request. For example,
+      you can restrict the callback to only handling events dealing with a particular URL:
+      <script type="text/javascript">
+      $( document ).ajaxComplete(function( event, xhr, settings ) {
+        if ( settings.url === "ajax/test.html" ) {
+          $( ".log" ).text( "Triggered ajaxComplete handler. The result is " +
+            xhr.responseText );
+        }
+      });
+      </script>
+
+6 ajaxError()
+      The <code>ajaxError()</code> method specifies a function to be run when AJAX request fails.
+      Whenever an Ajax request completes with an error, jQuery triggers the <code>ajaxError()</code> event.
+      <!-- NOTE:  -->: This handler is not called for cross-domain script and cross-domain JSONP requests.
+      <script type="text/javascript">
+        $( document ).ajaxError(function() {
+          $( ".log" ).text( "Triggered ajaxComplete handler." );
+        });
+        $( "button" ).click(function() {
+          $( ".result" ).load( "ajax/wrong.html" );
+        });
+      </script>
+      In the above example when user clicks the button AJAX request will be sent and after AJAX request complete and if it fails
+      the <code>ajaxErro()</code> method will be fired.
+      In one web page there might be a chance more than one ajax requst so at that time the <code>ajaxError()</code>
+      will fire for any AJAX request, So differentiate which AJAX request, use the parameters passed to the method.
+      Each time an <code>ajaxError()</code> method  is executed, it is passed the event object, the <code>XMLHttpRequest</code>
+      object, and the settings object that was used in the creation of the request. When an HTTP error occurs, the fourth argument
+      <code>thrownError</code> receives the textual portion of the HTTP status, such as "Not Found" or "Internal Server Error."
+      For example, you can restrict the error callback to only handling events dealing with a particular URL:
+      <script type="text/javascript">
+      $( document ).ajaxError(function( event, jqxhr, settings, thrownError ) {
+        if ( settings.url == "ajax/missing.html" ) {
+          $( "div.log" ).text( "Triggered ajaxError handler." );
+        }
+      });
+      </script>
+
+7 ajaxSend()
+      Whenever an Ajax request is about to be sent, jQuery triggers the <code>ajaxSend()</code> event.
+      <script type="text/javascript">
+      $( document ).ajaxSend(function() {
+        $( ".log" ).text( "Triggered ajaxSend handler." );
+      });
+      $( ".trigger" ).click(function() {
+        $( ".result" ).load( "ajax/test.html" );
+      });
+      </script>
+      When the user clicks the element with class trigger and the Ajax request is about to begin and <code>ajaxSend()</code> handledr
+      will be fired.
+      All <code>ajaxSend()</code> handlers are invoked, regardless of what Ajax request is to be sent. If you must differentiate between
+      the requests, use the parameters passed to the handler. Each time an <code>ajaxSend()</code> handler is executed,
+      it is passed the event object, the jqXHR object (in version 1.4, XMLHttpRequestobject), and the settings object that was used
+      in the creation of the Ajax request. For example, you can restrict the callback to only handling events dealing with
+      a particular URL:
+      <script type="text/javascript">
+      $( document ).ajaxSend(function( event, jqxhr, settings ) {
+        if ( settings.url == "ajax/test.html" ) {
+          $( ".log" ).text( "Triggered ajaxSend handler." );
+        }
+      });
+      </script>
+
+8 ajaxStart()
+      <code>ajaxStart()</code> fires when the first simultaneous request starts.
+      Whenever an Ajax request completes, jQuery checks whether there are any other outstanding Ajax requests. If none remain,
+      jQuery triggers the ajaxStop event.
+      so for example you send a 3 request at a time here there is small difference between <code>ajaxSend()</code> and <code>ajaxStart()</code>, <code>ajaxSend()</code> will
+      fire for every request so here <code>ajaxSend()</code> will fire 3 times because we sent 3 requests. but <code>ajaxStart()</code>
+      not like that, <code>ajaxStart()</code> will when first request about to send.
+      <script type="text/javascript">
+      $( document ).ajaxStart(function() {
+        $( "#loading" ).show();
+      });
+      </script>
+
+9 ajaxStop()
+      <code>ajaxStop()</code> fires then the last of that simultaneous request finishes.
+      Whenever an Ajax request completes, jQuery checks whether there are any other outstanding Ajax requests.
+      If none remain, jQuery triggers the <code>ajaxStop()</code> event.
+      so for example you send a 3 request at a time here there is small difference between <code>ajaxStop()</code> and <code>ajaxComplete()</code>,
+      <code>ajaxComplete()</code> will fire for every request so here <code>ajaxComplete()</code> will fire 3 times
+      because we sent 3 requests. but <code>ajaxStop()</code> not like that, <code>ajaxStop()</code> will fire when
+      the last request completes.
+      <script type="text/javascript">
+      $( document ).ajaxStop(function() {
+        $( ".log" ).text( "Triggered ajaxStop handler." );
+      });
+      </script>
+
+10 ajaxSuccess()
+      Whenever an Ajax request completes successfully, jQuery triggers the <code>ajaxSuccess()</code> event.
+      <script type="text/javascript">
+      $(document).ajaxSuccess(function() {
+        $( ".log" ).text( "Triggered ajaxSuccess handler." );
+      });
+      $( ".trigger" ).on( "click", function() {
+        $( ".result" ).load( "ajax/test.html" );
+      });
+      </script>
+      When the user clicks the element with class trigger and the Ajax request completes successfully, then the <code>ajaxSuccess()</code>
+      will be fired and the log message is displayed.
+
+3	children( [selector])
+Get a set of elements containing all of the unique immediate children of each of the matched set of elements.
+
+4	closest( selector )
+Get a set of elements containing the closest parent element that matches the specified selector, the starting element included.
+
+5	contents( )
+Find all the child nodes inside the matched elements (including text nodes), or the content document, if the element is an iframe.
+
+6	end( )
+Revert the most recent 'destructive' operation, changing the set of matched elements to its previous state.
+
+7	find( selector )
+Searches for descendant elements that match the specified selectors.
+
+8	next( [selector] )
+Get a set of elements containing the unique next siblings of each of the given set of elements.
+
+9	nextAll( [selector] )
+Find all sibling elements after the current element.
+
+10	offsetParent( )
+Returns a jQuery collection with the positioned parent of the first matched element.
+
+11	parent( [selector] )
+Get the direct parent of an element. If called on a set of elements, parent returns a set of their unique direct parent elements.
+
+12	parents( [selector] )
+Get a set of elements containing the unique ancestors of the matched set of elements (except for the root element).
+
+13	prev( [selector] )
+Get a set of elements containing the unique previous siblings of each of the matched set of elements.
+
+14	prevAll( [selector] )
+Find all sibling elements in front of the current element.
+
+15	siblings( [selector] )
+Get a set of elements containing all of the unique siblings of each of the matched set of elements
+
+Jquery Attribute methods
+
+16	attr( properties )
+Set a key/value object as properties to all matched elements.
+
+17	attr( key, fn )
+Set a single property to a computed value, on all matched elements.
+
+18	removeAttr( name )
+Remove an attribute from each of the matched elements.
+
+19	hasClass( class )
+Returns true if the specified class is present on at least one of the set of matched elements.
+
+20	removeClass( class )
+Removes all or the specified class(es) from the set of matched elements.
+
+21	toggleClass( class )
+Adds the specified class if it is not present, removes the specified class if it is present.
+
+22	html( )
+Get the html contents (innerHTML) of the first matched element.
+
+23	html( val )
+Set the html contents of every matched element.
+
+24	text( )
+Get the combined text contents of all matched elements.
+
+25	text( val )
+Set the text contents of all matched elements.
+
+26	val( )
+Get the input value of the first matched element.
+
+27	val( val )
+Set the value attribute of every matched element if it is called on <input> but if it is called on <select> with the passed <option> value then passed option would be selected, if it is called on check box or radio box then all the matching check box and radiobox would be checked.
+
+
+JQuery DOM Filter Methods
+
+28 	eq( index )
+Reduce the set of matched elements to a single element.
+
+29	filter( selector )
+Removes all elements from the set of matched elements that do not match the specified selector(s).
+
+30	filter( fn )
+Removes all elements from the set of matched elements that do not match the specified function.
+
+31	is( selector )
+Checks the current selection against an expression and returns true, if at least one element of the selection fits the given selector.
+
+32	map( callback )
+Translate a set of elements in the jQuery object into another set of values in a jQuery array (which may, or may not contain elements).
+
+33	not( selector )
+Removes elements matching the specified selector from the set of matched elements.
+
+34	slice( start, [end] )
+Selects a subset of the matched elements.
