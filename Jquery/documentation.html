@@ -177,6 +177,22 @@ Jquery traversing methods
       </script>
       When the user clicks the element with class trigger and the Ajax request completes successfully, then the <code>ajaxSuccess()</code>
       will be fired and the log message is displayed.
+      All ajaxSuccess handlers are invoked, regardless of what Ajax request was completed. If you must differentiate
+      between the requests, you can use the parameters passed to the handler. Each time an <code>ajaxSuccess()</code> handler is
+      executed, it is passed the event object, the <code>XMLHttpRequest</code> object, and the settings object that was used
+      in the creation of the request. For example, you can restrict the callback to only handling events dealing with
+      a particular URL:
+      <script type="text/javascript">
+      $( document ).ajaxSuccess(function( event, xhr, settings ) {
+        if ( settings.url == "ajax/test.html" ) {
+          $( ".log" ).text( "Triggered ajaxSuccess handler. The Ajax response was: " +
+            xhr.responseText );
+        }
+      });
+      </script>
+
+11 andSelf()
+      
 
 3	children( [selector])
 Get a set of elements containing all of the unique immediate children of each of the matched set of elements.
