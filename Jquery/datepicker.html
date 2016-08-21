@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" type="text/css" href="/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/bootstrap-3.3.7-dist/font-awesome-4.6.3/css/font-awesome.min.css">
+  <script src="/jquery/dist/jquery.js"></script>
+  <script src="/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+  <style>
+    .date-picker {
+
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="date-picker">
+
+    </div>
+  </div>
+</body>
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    console.log(yearGeneration(2016));
+
+    function yearsGeneration(noOfYears) {
+      years = {};
+      for(var i=0; i<noOfYears; i++) {
+        years.push[]
+      }
+    }
+    function yearGeneration(year){
+      return {
+        "Jan" : daysGeneration(year, 1),
+        "Feb" : daysGeneration(year, 2)
+      }
+    }
+    function daysGeneration(year, month) {
+      var days = [];
+      for(var i=1; i<=31; i++) {
+        days.push(i);
+      }
+      if(month === 1) {
+        return days.slice(0, 30);
+      }
+      if(month === 2 && year % 4 === 0) {
+        return days.slice(0, 28);
+      } else if(month === 2 && year % 4 === 1){
+        return days.slice(0, 29);
+      }
+      console.log(days);
+    }
+  });
+</script>
+</html>

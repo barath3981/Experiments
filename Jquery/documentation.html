@@ -191,106 +191,447 @@ Jquery traversing methods
       });
       </script>
 
+
 11 andSelf()
-      
-
-3	children( [selector])
-Get a set of elements containing all of the unique immediate children of each of the matched set of elements.
-
-4	closest( selector )
-Get a set of elements containing the closest parent element that matches the specified selector, the starting element included.
-
-5	contents( )
-Find all the child nodes inside the matched elements (including text nodes), or the content document, if the element is an iframe.
-
-6	end( )
-Revert the most recent 'destructive' operation, changing the set of matched elements to its previous state.
-
-7	find( selector )
-Searches for descendant elements that match the specified selectors.
-
-8	next( [selector] )
-Get a set of elements containing the unique next siblings of each of the given set of elements.
-
-9	nextAll( [selector] )
-Find all sibling elements after the current element.
-
-10	offsetParent( )
-Returns a jQuery collection with the positioned parent of the first matched element.
-
-11	parent( [selector] )
-Get the direct parent of an element. If called on a set of elements, parent returns a set of their unique direct parent elements.
-
-12	parents( [selector] )
-Get a set of elements containing the unique ancestors of the matched set of elements (except for the root element).
-
-13	prev( [selector] )
-Get a set of elements containing the unique previous siblings of each of the matched set of elements.
-
-14	prevAll( [selector] )
-Find all sibling elements in front of the current element.
-
-15	siblings( [selector] )
-Get a set of elements containing all of the unique siblings of each of the matched set of elements
-
-Jquery Attribute methods
-
-16	attr( properties )
-Set a key/value object as properties to all matched elements.
-
-17	attr( key, fn )
-Set a single property to a computed value, on all matched elements.
-
-18	removeAttr( name )
-Remove an attribute from each of the matched elements.
-
-19	hasClass( class )
-Returns true if the specified class is present on at least one of the set of matched elements.
-
-20	removeClass( class )
-Removes all or the specified class(es) from the set of matched elements.
-
-21	toggleClass( class )
-Adds the specified class if it is not present, removes the specified class if it is present.
-
-22	html( )
-Get the html contents (innerHTML) of the first matched element.
-
-23	html( val )
-Set the html contents of every matched element.
-
-24	text( )
-Get the combined text contents of all matched elements.
-
-25	text( val )
-Set the text contents of all matched elements.
-
-26	val( )
-Get the input value of the first matched element.
-
-27	val( val )
-Set the value attribute of every matched element if it is called on <input> but if it is called on <select> with the passed <option> value then passed option would be selected, if it is called on check box or radio box then all the matching check box and radiobox would be checked.
+      <!-- NOTE:  -->
+      This function has been deprecated and is now an alias for <code>addBack()</code>, which should be used with jQuery 1.8 and later.
 
 
-JQuery DOM Filter Methods
+12 animate()
+      The <code>animate()</code> method allows us to create animation effects on any numeric CSS property. This method changes
+      an element from one state to another with CSS styles. The CSS property value is changed gradually, to create an animated effect.
+      Only numeric values can be animated (like "margin:30px"). String values cannot be animated (like "background-color:red"),
+      except for the strings "show", "hide" and "toggle". These values allow hiding and showing the animated element.
+      It has four parameters those are listed below.
 
-28 	eq( index )
-Reduce the set of matched elements to a single element.
+      STYLES (Required):  Specifies one or more CSS properties/values to animate.
+      <!-- NOTE:  -->     The property names must be camel-cased when used with the animate() method: You will need to
+      write paddingLeft instead of padding-left, marginRight instead of margin-right, and so on.
+      Tip: Color animations are not included in the core jQuery library. If you want to animate color, you need to download
+      the Color Animations plugin from jQuery.com
 
-29	filter( selector )
-Removes all elements from the set of matched elements that do not match the specified selector(s).
+      SPEED (Optional):   Specifies the speed of the animation. Default value is 400 milliseconds.
 
-30	filter( fn )
-Removes all elements from the set of matched elements that do not match the specified function.
+      EASING (Optional):  Specifies the speed of the element in different points of the animation. Default value is "swing".
 
-31	is( selector )
-Checks the current selection against an expression and returns true, if at least one element of the selection fits the given selector.
+      CALLBACK(Optional): A function to be executed after the animation completes.
+      <div id="clickme">
+        Click here
+      </div>
+      <img id="book" src="images/flag.jpg" alt="" width="100" height="123"
+        style="position: relative; left: 10px;">
+      <script type="text/javascript">
+      $( "#clickme" ).click(function() {
+        $( "#book" ).animate({
+          opacity: 0.25,
+          left: "+=50",
+          height: "toggle"
+        }, 5000, function() {
+          console.log('');
+        });
+      });
+      </script>
+      PENDING...
 
-32	map( callback )
-Translate a set of elements in the jQuery object into another set of values in a jQuery array (which may, or may not contain elements).
 
-33	not( selector )
-Removes elements matching the specified selector from the set of matched elements.
+13 :animated selector
+      Select all elements that are in the progress of an animation at the time the selector is run.
+      <!-- NOTE:  --> If you use a custom jQuery build without the effects module, the <code>:animated</code> selector will throw an error.
+      <button id="run">Run</button>
+      <div></div>
+      <div id="mover"></div>
+      <div></div>
+      <script type="text/javascript">
+      $( "#run" ).click(function() {
+        $( "div:animated" ).toggleClass( "colored" );
+      });
+      function animateIt() {
+        $( "#mover" ).slideToggle( "slow", animateIt );
+      }
+      animateIt();
+      </script>
 
-34	slice( start, [end] )
-Selects a subset of the matched elements.
+
+14 append() appendTo()
+      The boths methods do same thingInsert content, specified by the parameter, to the end of each element in the set of
+      matched elements. but there is small difference
+      append:     appends the parameter to the object you're working on.
+      appendTo:   appends the object you're working on to the parameter.
+      <h2>Greetings</h2>
+      <div class="inner">Hello<p>Test</p></div>
+      <div class="inner">Goodbye<p>Test</p></div>
+      <script type="text/javascript">
+        $( ".inner" ).append( '<h2>Greetings</h2>' );
+      </script>
+      <code>after()</code> method also works in same way but
+      Suppose you have html code like this.
+      <div class='a'> <!---you want div c to append in this div at last. -->
+        <div class='b'>b</div>
+      </div>
+      Then you should use <code>append()</code> function like this.
+      <script type="text/javascript">
+        $("div.a").append("<div class='c'>C</div>");
+      </script>
+      Then, the html code looks like this.
+      <div class='a'>
+        <div class='b'>b</div>
+         <div class='c'>C</div> /<!---this will be placed here. -->
+      </div>
+      If you use <code>after()</code> refer after() method
+
+
+15 attr()
+      This <code>attr()</code> method is used to ser the attribure value or return the attribure value of first matched element.
+      When this method is used to return the attribute value, it returns the value of the FIRST matched element.
+      When this method is used to set attribute values, it sets one or more attribute/value pairs for the set of matched elements.
+      <script type="text/javascript">
+        $(selector).attr(attribute);
+      </script>
+      The above example returns the attribute value of first element in the set of matched elements.
+      <script type="text/javascript">
+        $(selector).attr(attribute,value);
+      </script>
+      The above example set the attribure value to all matched elements.
+      <script type="text/javascript">
+        $(selector).attr({attribute:value, attribute:value,...});
+      </script>
+      The above example is used to set multiple attributes at a time to all matched elements.
+      <div class="inner" id="first-inner" style="border: 1px solid">Hello<p>Test</p></div>
+      <div class="inner" id="second-inner">Goodbye<p>Test</p></div>
+      <script type="text/javascript">
+      $('.inner').attr('id', function(index, value) {
+        console.log(index, value);
+      });
+      </script>
+      In the above example, we have passed two parameters to <code>attr()</code> method one is 'id' and other one is anonymous
+      function again this function has two parameters one is index and value, so these function will exucute lenght of the matched
+      elemnts times, so this function returns the index of the attribure id and value of the attribure id.
+
+
+16 before()
+      Insert content, specified by the parameter, before each element in the set of matched elements.
+      <h2>Greetings</h2>
+      <div class="container">
+        <div class="inner">Hello</div>
+        <div class="inner">Goodbye</div>
+      </div>
+      <script type="text/javascript">
+        $( ".inner" ).before( "<p>Test</p>" );
+      </script>
+      Here in the above example jquery will add <code><p>Test</p></code> tag before every inner selector.
+      But when we pass existing selector to <code>before()</code> method as a parameter, it move. like below example.
+      <div class="container">
+        <h2>Greetings</h2>
+        <div class="inner">Hello</div>
+        <h2>Greetings</h2>
+        <div class="inner">Goodbye</div>
+      </div>
+      <script type="text/javascript">
+        $( ".inner" ).before( $(h2) );
+      </script>
+      PENDING...
+
+17 bind() and on()
+      The <code>bind()</code> and <code>on()</code> methods attaches one or more event handlers for selected elements, and specifies a function to run when the event occurs.
+      <!-- NOTE:  --> As of jQuery version 1.7, the <code>on()</code> method is the preferred method for attaching event handlers for selected elements.
+      Internally <code>bind()</code> maps to the <code>on()</code> as per current version of Jquery.
+      <a href="#" class="click"></a>
+      <script type="text/javascript">
+        $('.click').bind('click', function() {
+
+        });
+      </script>
+      In the above example the <code>bind()</code> method attaches the click handled to all matched elements
+      <a href="#" class="click"></a>
+      <script type="text/javascript">
+        $('.click').on('click', function() {
+
+        });
+      </script>
+      In the above example the <code>on()</code> method will lister the click handlers.
+
+
+18 blur() and focus()
+      The <code>blur()</code> event occurs when an element loses focus.
+      The <code>focus()</code> event occurs when user focus the element.
+      The <code>blur()</code> event does not bubble in Internet Explorer. Therefore, scripts that rely on event
+      delegation with the <code>blur()</code> event will not work consistently across browsers. As of version 1.4.2,
+      however, jQuery works around this limitation by mapping blur to the focusout event in its event delegation methods,
+      <code>live()</code> and <code>dlegate()</code>.
+
+
+19 callbacks.add()
+      <script type="text/javascript">
+      function fn1( value ) {
+        console.log( value );
+      }
+      function fn2( value ) {
+        console.log( "fn2 says: " + value );
+        return false;
+      }
+      var callbacks = $.Callbacks();
+      callbacks.add( fn1 );
+      callbacks.fire( "foo!" );
+      callbacks.add( fn2 );
+      callbacks.fire( "bar!" );
+      // Disable further calls being possible
+      callbacks.disable();
+      // Attempt to fire with "foobar" as an argument
+      callbacks.fire( "foobar" );
+      </script>
+      The result of this is that it becomes simple to construct complex lists of callbacks where input values can be passed
+      through to as many functions as needed with ease.
+      Two specific methods were being used above: .add() and .fire(). The .add() method supports adding new callbacks to the
+      callback list, while the .fire() method executes the added functions and provides a way to pass arguments to be
+      processed by the callbacks in the same list.
+      Another method supported by $.Callbacks is .remove(), which has the ability to remove a particular callback from the callback list. Here's a practical example of .remove() being used:
+      callbacks.disabled()
+      callbacks.empty()
+      callbacks.fired()
+      callbacks.fireWith()
+      callbacks.has()
+      callbacks.lock()
+      callbacks.locked()
+      callbacks.remove()
+
+
+20 change()
+      This method is a shortcut for <code>on( "change", handler )</code> in the first two variations, and
+      <code>trigger( "change" )</code> in the third.
+      The change event is sent to an element when its value changes. This event is limited to <input> elements, <textarea> boxes
+      and <select> elements. For select boxes, checkboxes, and radio buttons, the event is fired immediately when the user makes
+      a selection with the mouse, but for the other element types the event is deferred until the element loses focus.
+      <input type="text" name="name" value="">
+      <script type="text/javascript">
+      $('input').on("change",function(val){
+        console.log('changing: ',val);
+      });
+      </script>
+      In the above example when user change data from the text box and when focus out the event will be fired.
+      If you want fire the while user changing the textbox. you should use like below example.
+      <script type="text/javascript">
+      $('input').on("change paste keyup",function(val){
+        console.log('changing: ',val);
+      });
+      </script>
+
+
+21 :checkbox Selector
+      <code>$( ":checkbox" )</code> is equivalent to <code>$( "[type=checkbox]" )</code>.
+
+
+22 :checked Selector
+      The <code>:checked</code> selector works for checkboxes, radio buttons, and options of select elements.
+
+
+23 .clearQueue()
+      The method <code>clearQueue()</code> removes all the functions waiting to execute or the queued functions of the selected element.
+      <script type="text/javascript">
+        $('#box').animate({ left: '+=500'}, 4000);
+        $('#box').animate({ top: '+=500'}, 4000);
+        $('#box').animate({ left: '-=500'}, 4000);
+      </script>
+      For above example Jquery internally maintain the queue to execute one by one.
+
+
+24 click()
+        The method <code>click()</code> shortcut for <code>.on( "click", handler )</code>.
+
+
+25 clone()
+      Create a deep copy of the set of matched elements, meaning that it copies the matched elements as well as all of their
+      descendant elements and text nodes.
+      <!-- NOTE:  --> For performance reasons, the dynamic state of certain form elements
+      (e.g., user data typed into textarea and user selections made to a select) is not copied to the cloned elements.
+      When cloning input elements, the dynamic state of the element (e.g., user data typed into text inputs and user
+      selections made to a checkbox) is retained in the cloned elements.
+      <div class="container">
+        <div class="goodbye">
+          Goodbye
+          <div class="hello">Hello</div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $( ".hello" ).clone().appendTo( ".goodbye" );
+      </script>
+      The above example will generate following HTML.
+      <div class="container">
+        <div class="hello">Hello</div>
+        <div class="goodbye">
+          Goodbye
+          <div class="hello">Hello</div>
+        </div>
+      </div>
+      <!-- NOTE:  --> When using the <code>clone()</code> method, you can modify the cloned elements or their contents
+      before (re-)inserting them into the document.
+      Normally, any event handlers bound to the original element are not copied to the clone.
+      <script type="text/javascript">
+      $('h2').click(function() {
+        $('.container h2').clone(true).insertAfter(".container");
+        console.log('H2 div clicked');
+      });
+      </script>
+      In the above example the Jquery will copy the h2 tag inside .container selector and insert after .contaner selector.
+      And also it copies the click handler of h2 tag. if you pass the <code>clone(false)</code> it won't copy the click
+      handler. Default value of the clone is false.
+
+
+26 closest()
+      The <code>closest()</code> method returns the first ancestor of the selected elements.
+      Th DOM Tree : This method traverse upwards from the current element, all the way up to the document's root element
+      (<html>), to find the first ancestor of DOM elements.
+      This method is similar to <code>parents()</code>, in that they both traverse up the DOM tree.
+      The differences are as follows:
+      closest() : Begins with the current element
+                  Travels up the DOM tree and returns the first (single) ancestor that matches the passed expression
+                  The returned jQuery object contains zero or one element
+      parents() : Begins with the parent element
+                  Travels up the DOM tree and returns all ancestors that matches the passed expression
+                  The returned jQuery object contains zero or more than one element
+      <div class="container">
+        <div class="hello1">Hello</div>
+        <div class="goodbye">
+          Goodbye
+          <div class="hello">Hello</div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.hello').closest('.hello1');
+      </script>
+      In the above example the Jquery traverse upwards from the current element and find for .hello1 selector and return that.
+
+
+
+27 :contains() Selector
+      Select all elements that contain the specified text.
+      <div>John Resig</div>
+      <div>George Martin</div>
+      <div>Malcom John Sinclair</div>
+      <div>J. Ohn</div>
+      <script type="text/javascript">
+        $( "div:contains('John')" ).css( "text-decoration", "underline" );
+      </script>
+      In the above example jquery will find for div text "John" and return those divs and add underline to those divs.
+
+
+
+28 contents() and children()
+      contents():   The <code>contents()</code> method returns all direct children, including text and comment nodes,
+                    of the selected element.
+      children():   The <code>children()</code> method returns all direct children of the selected element.
+      <div class="container">
+        <div class="insideDiv">
+          <!-- This is barat kumar -->
+          <h2 class="h2">Greetings</h2>
+          this is barat kumar
+          <div class="div">This is separation div </div>
+        </div>
+      </div>
+      <script type="text/javascript">
+        $('.insideDiv').children()
+        $('.insideDiv').contents()
+      </script>
+      In the above example first statements returns the h2 and div tags only, but second statement returns everything of the
+      .insideDiv selector including comment and text.
+
+
+
+29 contextmenu()
+      <code>contextmenu()</code> will fire when right click on selecte selector for example
+      <div id="target">
+        Right-click here
+      </div>
+      <script type="text/javascript">
+      $( "#target" ).contextmenu(function() {
+        alert( "Handler for .contextmenu() called." );
+      });
+      </script>
+      In the above example, when we right click on the div the alert will be fired.
+
+
+
+30 css()
+      The property <code>css()</code> like <code>attr()</code> property it is also return the computed style property from
+      the first matched element.
+      <script type="text/javascript">
+        $("p").css("background-color");
+      </script>
+      In the above example it will returns background-color.
+      <script type="text/javascript">
+        $("p").css("background-color", "yellow");
+      </script>
+      In the second example it will set the background-color yellow to <code>p</code> tag.
+      If you want to get multiple css properties forom selector, you should write you functionality
+      <script type="text/javascript">
+      $.fn.cssGet = function (propertyArray) {
+        var output = {},
+            self   = this.eq(0);
+        for (var i = 0, len = propertyArray.length; i < len; i++) {
+            output[propertyArray[i]] = self.css(propertyArray[i]);
+        }
+        return output;
+      };
+      console.log($('div').cssGet(['background', 'height']));
+      </script>
+
+
+
+31 data()
+      The jQuery.data() method allows us to attach data of any type to DOM elements in a way that is safe
+      from circular references and therefore free from memory leaks. jQuery ensures that the data is removed
+      when DOM elements are removed via jQuery methods, and when the user leaves the page. We can set several
+      distinct values for a single element and retrieve them later:
+      <script type="text/javascript">
+        $('h2').data('greet', 'hello world');
+      </script>
+      In the above example data has store in <code>h2</code> element. the data is 'hello world' and 'greet' is name like
+      key to get data forom same <code>h2</code> tag
+      <script type="text/javascript">
+        $('h2').data('greet');
+      </script>
+      The above example for get data from <code>h2</code> tag.
+
+
+
+32 dblclick()
+      This method is a shortcut for <code>.on( "dblclick", handler )</code> in the first two variations, and
+      <code>.trigger( "dblclick" )</code> in the third. The dblclick event is sent to an element when the element
+      is double-clicked. Any HTML element can receive this event.
+      <script type="text/javascript">
+      $( "#target" ).dblclick(function() {
+        alert( "Handler for .dblclick() called." );
+      });
+      </script>
+      In the above example the <code>alert()</code> will be fire when user double click on the targe selector.
+
+
+
+33 defered()
+      * JQuery 1.5 introduced the concept of “Deferred”
+      * Usually, The Jquery deferred will use for call asynchronous method.
+      * Usually, the way we are used to deal with asynchronous code in Javascript is passing callbacks as an argument to the function
+      * Deferred objects in jQuery represents a unit of work that will be completed later, typically asynchronously.
+        Once the unit of work completes, the deferred object can be set to resolved or failed.
+      * A deferred object contains a promise object. Via the promise object you can specify what is to happen
+        when the unit of work completes.
+      <script type="text/javascript">
+        function testAsync() {
+          var deferredObject = $.Deferred();
+          setTimeout(function() {
+            deferredObject.resolve();
+          }, 1000);
+          return deferredObject.promise();
+        }
+        var promise = testAsync();
+        promise.done(function() {
+          console.log('Execution done');
+        });
+      </script>
+      In the above example there is method called <code>testAsync()</code> this will be call when we run.
+      But this method will take one second to complete execution.
+      In this method we have created diferred object, after completion of the method execution we are changing the
+      defereed object state to resolve and we returning the deferred object.
+      When we return the deferredobject the done will be fired
+      <!-- NOTE:  --> The done will fire when diferred state resolve()
+      <!-- NOTE:  --> The fail will fire when diferred state reject()
+      <!-- NOTE:  --> The always will fire for both states resolve() and reject()

@@ -1,0 +1,61 @@
+NG-APP    AUTO-BOOTSTRAP
+
+      1.  The <code>ng-app</code> directive tells AngularJS that this is the root element of the AngularJS application.
+      2.  All AngularJS applications must have a root element.
+      3.  To run multiple applications in an HTML document you must manually bootstrap them using <code>angular.bootstrap</code> instead.
+          AngularJS applications cannot be nested within each other.
+      4.  It initializes the AngularJS framework automatically.
+      5.  AngularJS framework will first check for ng-app directive in a HTML document after the entire document is loaded and if ng-app is found,
+          it bootstraps itself and compiles the HTML template.
+
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>ng-app Directive</title>
+              <script src="../Scripts/angular.min.js"></script>
+          </head>
+          <body >
+              <div>{{2/2}}</div>
+              <div id="myDiv" ng-app>
+                  {{5/2}}
+                  <div>{{10/2}}</div>
+              </div>
+              <div>{{2/2}}</div>
+          </body>
+          </html>
+          In the above example, <code>ng-app</code> directive is placed in the div element whose id is "myDiv".
+          Therefore, AngularJS will only compile myDiv and its child elements. It will not compile the parent or
+          sibling elements of myDiv.
+
+MANUAL-BOOTSTRAP
+
+        we can also initialize AngularJS manually without using ng-app directive.
+        <!DOCTYPE html>
+        <html >
+        <head>
+            <title>Angular Bootstrap</title>
+            <script src="~/Scripts/angular.js"></script>
+        </head>
+        <body>
+            <div>{{2/2}}</div>
+            <div>{{5/2}}<div>{{10/2}}</div></div>
+        <script>
+             angular.element(document).ready(function () {
+                 angular.bootstrap(angular.element("body")[0], ['Appname']);
+             });
+             angular.element(document).ready(function () {
+               angular.bootstrap(angular.element("body"), ['App']);
+             });
+             angular.element(document).ready(function () {
+               angular.bootstrap(document.getElementById('myapp'), ['App']);
+             });
+        </script>
+        </body>
+        </html>
+
+
+methods
+-------
+
+1 angular.bind
+        
